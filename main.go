@@ -45,7 +45,7 @@ func listen(topic string) {
 			log.Fatalln(err)
 		}
 		currentTime := time.Now()
-		f, err := os.Create(currentTime.Format("2006.01.02 15:04:05") + ".jpg")
+		f, err := os.Create("/data/" + currentTime.Format("2006.01.02 15:04:05") + ".jpg")
 		if err != nil {
 			panic(err)
 		}
