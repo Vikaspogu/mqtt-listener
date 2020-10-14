@@ -16,11 +16,7 @@ import (
 var client mqtt.Client
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
+	godotenv.Load()
 	mqttBroker := os.Getenv("MQTT_BROKER")
 	topic := os.Getenv("TOPIC")
 
