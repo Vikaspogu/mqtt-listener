@@ -10,7 +10,7 @@ RUN go build
 FROM alpine:edge
 RUN apk --no-cache add ca-certificates
 WORKDIR /app
-COPY --from=builder /app/garage-go /app/garage-go
+COPY --from=builder /app/mqtt-listener /app/mqtt-listener
 EXPOSE 8080
-ENTRYPOINT [ "sh", "-c", "/app/garage-go" ]
+ENTRYPOINT [ "sh", "-c", "/app/mqtt-listener" ]
 
