@@ -32,14 +32,18 @@ func main() {
 
 	go listen(topic)
 
-	r := gin.Default()
-	r.GET("/health", func(c *gin.Context) {
+	router := gin.Default()
+	router.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+		SkipPaths: []string{"/health"},
+	}))
+	router.Use(gin.Recovery())
+	router.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "UP",
 		})
 	})
 
-	r.Run()
+	router.Run()
 }
 
 func listen(topic string) {
@@ -54,7 +58,6 @@ func listen(topic string) {
 		imageName := currentTime.Format("2006-01-02 15:04:05") + ".jpg"
 
 		if _, err := os.Stat(currDir); os.IsNotExist(err) {
-			// path/to/whatever does not exist
 			err := os.Mkdir(currDir, 0755)
 			if err != nil {
 				log.Errorf("Cannot create folder %s", currentDate)
