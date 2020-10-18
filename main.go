@@ -65,8 +65,8 @@ func listen(topic string) {
 				log.Errorf("Cannot create folder %s", currentDate)
 			}
 		}
-
-		f, err := os.Create(currDir + imageName)
+		fileName := fmt.Sprintf("%s%s%s", currDir, "/", imageName)
+		f, err := os.Create(fileName)
 		if err != nil {
 			panic(err)
 		}
