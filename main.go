@@ -54,7 +54,8 @@ func listen(topic string) {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		currentTime := time.Now()
+		loc, _ := time.LoadLocation("America/Chicago")
+		currentTime := time.Now().In(loc)
 		currentDate := currentTime.Format("2006-01-02")
 		currDir := fmt.Sprintf("%s%s%s", path, "/", currentDate)
 		imageName := fmt.Sprintf("%s%s", currentTime.Format("2006-01-02 15:04:05"), ".jpg")
