@@ -54,7 +54,7 @@ func listen(topic string) {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		loc, _ := time.LoadLocation("America/Chicago")
+		loc, _ := time.LoadLocation("America/New_York")
 		currentTime := time.Now().In(loc)
 		currentDate := currentTime.Format("2006-01-02")
 		currDir := fmt.Sprintf("%s%s%s", path, "/", currentDate)
