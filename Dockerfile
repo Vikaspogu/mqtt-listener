@@ -8,7 +8,7 @@ COPY . .
 RUN go build
 
 FROM alpine:edge
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add ca-certificates tzdata
 WORKDIR /app
 COPY --from=builder /app/mqtt-listener /app/mqtt-listener
 EXPOSE 8080
