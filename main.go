@@ -6,6 +6,7 @@ import (
 	"image"
 	"image/jpeg"
 	"os"
+	"strings"
 	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
@@ -61,7 +62,8 @@ func listen(topic string) {
 		currentTime := time.Now().In(location)
 		currentDate := currentTime.Format("2006-01-02")
 		currDir := fmt.Sprintf("%s%s%s", path, "/", currentDate)
-		imageName := fmt.Sprintf("%s%s", currentTime.Format("15:04:05"), ".jpg")
+		timeFormatted := strings.ReplaceAll(currentTime.Format("15:04:05"), ":", "-")
+		imageName := fmt.Sprintf("%s%s", timeFormatted, ".jpg")
 
 		if _, err := os.Stat(currDir); os.IsNotExist(err) {
 			err := os.Mkdir(currDir, 0755)
