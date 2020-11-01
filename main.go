@@ -61,7 +61,7 @@ func listen(topic string) {
 		currentTime := time.Now().In(location)
 		currentDate := currentTime.Format("2006-01-02")
 		currDir := fmt.Sprintf("%s%s%s", path, "/", currentDate)
-		imageName := fmt.Sprintf("%s%s", currentTime.Format("15:04:05"), ".jpg")
+		imageName := fmt.Sprintf("%s%s", currentTime.Format("2006.01.02"), ".jpg")
 
 		if _, err := os.Stat(currDir); os.IsNotExist(err) {
 			err := os.Mkdir(currDir, 0755)
@@ -73,6 +73,7 @@ func listen(topic string) {
 		f, err := os.Create(fileName)
 		if err != nil {
 			log.Error(err)
+			return
 		}
 		defer f.Close()
 		opt := jpeg.Options{
