@@ -23,7 +23,7 @@ func main() {
 	godotenv.Load()
 	mqttBroker := os.Getenv("MQTT_BROKER")
 	topic := os.Getenv("TOPIC")
-	path = "/data/"
+	path = "/data"
 
 	opts := mqtt.NewClientOptions().AddBroker("tcp://" + mqttBroker + ":1883").SetClientID("frigate_client")
 	client = mqtt.NewClient(opts)
