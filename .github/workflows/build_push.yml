@@ -45,5 +45,5 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: ${{ steps.prepare.outputs.docker_platform }}
-          tags: ${{ steps.prepare.outputs.docker_image }}:"$GITHUB_SHA"
+          tags: ${{ steps.prepare.outputs.docker_image }}:$GITHUB_SHA
           push: true
